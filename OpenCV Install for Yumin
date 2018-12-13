@@ -1,0 +1,7 @@
+sudo apt install python-dev python-pip python-tk python3-dev python3-pip virtualenv
+virtualenv --python=/usr/bin/python2.7 /home/eamon/env/p2
+source /home/eamon/env/p2/bin/activate
+
+#you should see a (python2) in front of your terminal code
+pip install numpy scipy matplotlib scikit-image scikit-learn ipython pandas xlrd imutils opencv-contrib-python astropy astropy_helpers
+pip install https://github.com/keflavich/gaussfitter/archive/master.zip
