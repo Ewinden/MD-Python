@@ -332,16 +332,25 @@ def showDaPoints(img, objects):
 -----------------------------------------------------------START OF MAIN-----------------------------------------------------------------
 '''
 
-# ~ print "\n please choose picture!"
-# ~ pictouse = askopenfilename(initialdir = "/",title = "Select file")
-# ~ directory = (pictouse[:(pictouse.rfind('/')+1)])
+print "\n please choose picture!"
+pictouse = askopenfilename(initialdir = "/",title = "Select file")
+directory = (pictouse[:(pictouse.rfind('/')+1)])
 
-pictouse = '/home/eamon/Desktop/sus2.tif'
-directory = '/home/eamon/Desktop/'
+# ~ pictouse = '/home/eamon/Desktop/sus2.tif'
+# ~ directory = '/home/eamon/Desktop/'
 
 outL = 15
 
-'''Define limits'''
+'''
+Define limits, as [lowerbound,upperbound]
+contour limits:
+	areac: area returned in findcontours, can be 0
+	perc: perimeter returned in findcontours
+	perc: redius returned in findcontours
+	xc: x location of maximum value in contour
+	yc: y location of maximum value in contour
+	meanc: mean intensity of object
+'''
 areac = [0,100]
 perc = [1,100]
 radc = [0,100]
@@ -349,6 +358,20 @@ xc = [0,2360]
 yc = [0,1960]
 meanc = [0,65536]
 contLimits = [areac, perc, xc, yc, radc, meanc]
+'''
+Define limits, as [lowerbound,upperbound]
+gaussian limits:
+	bgl: background estimated in gaussian
+	peakl: peak estimated in gaussian
+	xl: x location within small area, should be 15
+	yl: y location within small area, should be 15
+	widthl: width (FWHM) estimated in gaussian
+	bgel: background error estimated in gaussian
+	peakel: peak error estimated in gaussian
+	xel: x location error within small area
+	yel: y location error within small area
+	widthel: width error estimated in gaussian
+'''
 bgl = [0,100000]
 peakl = [0,65536]
 xl = [0,30]
@@ -360,6 +383,11 @@ xel = [-1,1]
 yel = [-1,1]
 widthel = [-1,1]
 gausLimits = [bgl,peakl,xl, yl, widthl,bgel,peakel,xel,yel,widthel]
+'''
+Define inputs for adaptive thresholding
+	adaarea: region to search to make threshold
+	adacon: constant to be subtracted from each value
+'''
 adaarea = 51
 adacon = -15
 adas = [adaarea, adacon]
