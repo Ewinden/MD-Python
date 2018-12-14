@@ -178,7 +178,7 @@ def gaussBoxFitPoint(img, point, outLength):
 	else:
 		return([np.zeros(5),np.zeros(5)])
 
-def findBrightObjects(img):
+def findBrightObjects(img, adans=[51,-15]):
 	
 	'''Finds bright objects using a threshold and findContours function returning a list of contours with summaries'''
 	
@@ -188,7 +188,7 @@ def findBrightObjects(img):
 	#img4x = cv2.resize(img8, (shap[1]/2,shap[0]/2), cv2.INTER_NEAREST)
 	#imb = cv2.GaussianBlur(img8, (5,5), 0)
 	ret1, thr1 = cv2.threshold(img8, 0, 255, cv2.THRESH_BINARY|cv2.THRESH_OTSU)
-	thr2 = cv2.adaptiveThreshold(img8,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,51,-15)
+	thr2 = cv2.adaptiveThreshold(img8,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,adans[0],adans[1])
 	cv2.imshow("img1", thr1)
 	cv2.imshow("img2", thr2)
 	cv2.waitKey(0)
@@ -360,6 +360,9 @@ xel = [-1,1]
 yel = [-1,1]
 widthel = [-1,1]
 gausLimits = [bgl,peakl,xl, yl, widthl,bgel,peakel,xel,yel,widthel]
+adaarea = 51
+adacon = -15
+adas = [adaarea, adacon]
 
 '''Define files'''
 lstshort = pictouse[:(pictouse.rfind('.'))]
